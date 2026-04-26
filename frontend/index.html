@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroScan AI – Alzheimer's MRI Classifier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">NeuroScan<em>AI</em></span>
+    </div>
+    <p class="tagline">Alzheimer's MRI Classification &amp; Report Generator</p>
+  </header>
+
+  <!-- ── MAIN ────────────────────────────────────────────── -->
+  <main>
+
+    <!-- Upload Card -->
+    <section class="card upload-card" id="uploadCard">
+      <h2>Upload MRI Scan</h2>
+      <p class="sub">Accepts JPG / PNG brain MRI images. Analysis is instant.</p>
+
+      <label class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <div class="drop-inner" id="dropInner">
+          <div class="drop-icon">🧠</div>
+          <span class="drop-label">Drop image here or <u>browse</u></span>
+          <span class="drop-hint">Max 10 MB</span>
+        </div>
+        <img id="preview" class="preview hidden" alt="MRI preview" />
+      </label>
+
+      <button class="btn-analyze" id="analyzeBtn" disabled>
+        <span class="btn-text">Analyse Scan</span>
+        <span class="btn-loader hidden" id="btnLoader"></span>
+      </button>
+
+      <p class="disclaimer-top">
+        ⚠️ For research &amp; educational use only. Not a clinical diagnostic tool.
+      </p>
+    </section>
+
+    <!-- Result Card (hidden until result arrives) -->
+    <section class="card result-card hidden" id="resultCard">
+
+      <!-- Prediction Banner -->
+      <div class="prediction-banner" id="predBanner">
+        <div class="pred-label">Prediction</div>
+        <div class="pred-class" id="predClass">–</div>
+        <div class="pred-meta">
+          <span>Confidence: <strong id="predConf">–</strong></span>
+          <span class="severity-badge" id="severityBadge">–</span>
+        </div>
+      </div>
+
+      <!-- Report Sections -->
+      <div class="report-body">
+
+        <div class="report-section">
+          <h3><span class="icon">📋</span> Clinical Explanation</h3>
+          <p id="reportExplanation"></p>
+        </div>
+
+        <div class="report-section">
+          <h3><span class="icon">🛡️</span> Precautions</h3>
+          <ul id="reportPrecautions"></ul>
+        </div>
+
+        <div class="report-section">
+          <h3><span class="icon">🌿</span> Lifestyle Suggestions</h3>
+          <ul id="reportLifestyle"></ul>
+        </div>
+
+        <div class="disclaimer-box" id="reportDisclaimer"></div>
+
+      </div>
+
+      <button class="btn-reset" id="resetBtn">← Analyse Another Scan</button>
+    </section>
+
+    <!-- Error Banner -->
+    <div class="error-banner hidden" id="errorBanner"></div>
+
+  </main>
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <footer>
+    <p>Built with Flask · TensorFlow · Netlify · Render &nbsp;|&nbsp; Dataset: Kaggle Alzheimer MRI</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
